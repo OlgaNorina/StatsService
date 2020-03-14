@@ -44,8 +44,7 @@ public class StatsService {
         int monthMax = 1;
         for (int proceed : proceeds) {
             month++;
-            if (proceedsMax < proceed) {
-                // если указать (proceedsMax <= proceed), выведится второй месяц = 8
+            if (proceedsMax <= proceed) {
                 proceedsMax = proceed;
                 monthMax = month;
             }
@@ -54,13 +53,13 @@ public class StatsService {
     }
 
     public static int getMonthMin(int[] proceeds) {
-        // выводим месяц, в который была максимальная продажа
+        // выводим месяц, в который была минимальная продажа
         int proceedsMin = proceeds[0];
         int month = 0;
         int monthMin = 1;
         for (int proceed : proceeds) {
             month++;
-            if (proceedsMin > proceed) {
+            if (proceedsMin >= proceed) {
                 proceedsMin = proceed;
                 monthMin = month;
             }
@@ -68,11 +67,8 @@ public class StatsService {
         return monthMin;
     }
 
-
     public static int getCountOverAverage(int[] proceeds) {
-
-        // выводим месяц, в который была максимальная продажа
-        int proceedsAverage = getSum(proceeds) / proceeds.length;
+        int proceedsAverage = getAverage(proceeds);
         int count = 0;
         int countOverAverage = 0;
         for (int proceed : proceeds) {
@@ -85,8 +81,7 @@ public class StatsService {
     }
 
     public static int getCountUnderAverage(int[] proceeds) {
-        // выводим месяц, в который была максимальная продажа
-        int proceedsAverage = getSum(proceeds) / proceeds.length;
+        int proceedsAverage = getAverage(proceeds);
         int count = 0;
         int countUnderAverage = 0;
         for (int proceed : proceeds) {
